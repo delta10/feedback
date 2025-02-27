@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import {App} from './App'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import {FeedbackForum} from '../components/features/forum/FeedbackForum'
 ---
 
-<Layout>
-	<App />
-</Layout>
+<BaseLayout>
+	<FeedbackForum client:load />
+</BaseLayout>
