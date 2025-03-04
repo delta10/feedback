@@ -7,6 +7,7 @@ export interface Post extends RecordModel {
   title: string
   description: string
   likes: number
+  author: string
 }
 
 const fetcher = async (): Promise<Post[]> =>
@@ -15,8 +16,12 @@ const fetcher = async (): Promise<Post[]> =>
 const usePosts = () => {
   const { data: posts, error } = useSWR<Post[]>('forum_posts', fetcher)
 
-  const createPost = async (title: string, description: string) => {
-    const newPost = { title, description, likes: 0 }
+  const createPost = async (
+    title: string,
+    description: string,
+    author: string
+  ) => {
+    const newPost = { title, description, likes: 0, author: author }
 
     try {
       await mutate(
