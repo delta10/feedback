@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Post } from '@/utils/forumPostService.ts'
 import { formatDate, formatTime } from '@/utils/dateFormatting.ts'
+import { Button } from '@/components/ui/button.tsx'
 
 type ForumPostProps = {
   post: Post
@@ -18,6 +19,9 @@ export const ForumPost: React.FC<ForumPostProps> = ({ post }) => {
         Geplaatst op: {formatDate(new Date(post.created))}{' '}
         {formatTime(new Date(post.created))}
       </span>
+      <Button className="mt-3" asChild>
+        <a href="/">Terug</a>
+      </Button>
     </>
   )
 }
