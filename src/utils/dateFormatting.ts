@@ -1,5 +1,3 @@
-import { date } from 'zod'
-
 export function timeAgo(date: Date): string {
   const now = new Date()
   const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)

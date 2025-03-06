@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button.tsx'
 import { ForumCreateDialog } from '@/components/features/forum/ForumCreateDialog.tsx'
 import { Logout } from '@/components/auth/Logout.tsx'

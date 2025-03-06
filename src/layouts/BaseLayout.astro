@@ -7,7 +7,7 @@
     "url": "",
     "name": "Feedback - Delta10",
     "description":
-      "De tool waar gebruikers van onze software feedback en suggesties kunnen achterlaten.",
+      "De tool waar gebruikers van onze software feedback en suggesties kunnen achterlaten."
   }
 ---
 
@@ -35,10 +35,7 @@
         />
         {/*<link rel="dns-prefetch" href="https://api.yourwebsite.com" />*/}
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
       </head>
       <body class="flex justify-center">
         <main class="w-full px-1 md:px-0 md:w-2/3"><slot/></main>
