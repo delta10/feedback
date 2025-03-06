@@ -8,9 +8,9 @@ import { Input } from '@/components/ui/input.tsx'
 import { Textarea } from '@/components/ui/textarea.tsx'
 import { Button } from '@/components/ui/button.tsx'
 import { useForm } from 'react-hook-form'
-import usePosts, { type Post } from '@/hooks/usePosts.ts'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
+import { createPost, type Post } from '@/utils/forumPostService.ts'
 
 interface ForumCreateDialogProps {
   open: boolean
@@ -21,14 +21,13 @@ export const ForumCreateDialog = ({
   open,
   onOpenChange,
 }: ForumCreateDialogProps) => {
-  const { createPost } = usePosts()
   const { register, handleSubmit, reset } = useForm<Post>()
   const user = useStore(authUser)
 
   const onSubmit = (post: Post) => {
     createPost(post.title, post.description, user?.name)
     reset()
-    onOpenChange(false)
+    window.location.href = '/'
   }
 
   return (

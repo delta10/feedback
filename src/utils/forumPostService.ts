@@ -20,15 +20,6 @@ export const getPosts = async (): Promise<Post[]> => {
   }
 }
 
-// export const getPost = async (postId: string): Promise<Post | null> => {
-//   try {
-//     return await pb.collection('forum_posts').getOne<Post>(postId.toString())
-//   } catch (error) {
-//     console.error('Error fetching posts:', error)
-//     return null
-//   }
-// }
-
 export const createPost = async (
   title: string,
   description: string,
