@@ -14,8 +14,7 @@ export const getPosts = async (): Promise<Post[]> => {
     return await pb.collection('forum_posts').getFullList<Post>({
       sort: '-created',
       headers: {
-        'Cache-Control': 'no-store, max-age=0',
-        'User-Agent': 'delta10-feedback (deployed on Vercel)',
+        'Cache-Control': 'no-store, max-age=0, must-revalidate',
       },
     })
   } catch (error) {
