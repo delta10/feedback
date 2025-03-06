@@ -11,15 +11,21 @@ export interface Post extends RecordModel {
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
-    return await pb.collection('forum_posts').getFullList<Post>({
-      sort: '-created',
-      headers: {
-        'Cache-Control': 'no-store, max-age=0, must-revalidate',
-      },
-    })
+    return await pb
+      .collection('forum_posts')
+      .getFullList<Post>({ sort: '-created' })
   } catch (error) {
     console.error('Error fetching posts:', error)
     return []
+  }
+}
+
+export const getPost = async (postId: string): Promise<Post | null> => {
+  try {
+    return await pb.collection('forum_posts').getOne<Post>(postId.toString())
+  } catch (error) {
+    console.error('Error fetching posts:', error)
+    return null
   }
 }
 

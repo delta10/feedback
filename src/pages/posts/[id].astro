@@ -1,20 +1,17 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { ForumPost } from '@/components/features/forum/ForumPost'
-import { getPosts } from '../../utils/forumPostService'
+import { getPost, type Post } from '../../utils/forumPostService'
 
-const post = Astro.props.post
 
-export async function getStaticPaths() {
-  const posts = await getPosts();
+const {id} = Astro.params
 
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: { post },
-  }));
-}
+if (!id)
+  return
+
+const post: Post | null = await getPost(id)
 ---
 
 <BaseLayout>
-  <ForumPost post={post}/>
+  {post && <ForumPost post={post}/>}
 </BaseLayout>

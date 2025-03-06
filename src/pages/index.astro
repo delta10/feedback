@@ -1,14 +1,13 @@
 ---
 import { FeedbackForum } from '@/components/features/forum/FeedbackForum'
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { Redirect } from '../components/auth/Redirect'
 import { ForumHeader } from '../components/features/forum/ForumHeader'
-import { getPosts } from '../utils/forumPostService'
+import { getPosts, type Post } from '../utils/forumPostService'
 
-const posts = await getPosts();
 
+
+const posts: Post[] = await getPosts()
 ---
-<Redirect client:load/>
 <BaseLayout>
   <ForumHeader client:load />
   <FeedbackForum posts={posts}/>
