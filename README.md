@@ -2,15 +2,23 @@
 ## Setup
 
 ### Backend - PocketBase
-Installeer en run pocketbase
+Installeer pocketbase
 ```sh
 brew install pocketbase
+```
+Laad de testdata en run vervolgens de pocketbase backend
+```sh
+pocketbase backup restore /pb_data/backups/testdata.zip
 pocketbase serve
 ```
-Maak vervolgens een account op de pocketbase pagina en voeg een tabel toe genaamd: forum_posts
 
 
 ### Frontend
+Installeer node
+```sh
+brew install node
+```
+
 Installeer de dependancies en run de lokale dev omgeving
 ```sh
 npm install
