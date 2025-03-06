@@ -25,9 +25,10 @@ export const ForumCreateDialog = ({
   const user = useStore(authUser)
 
   const onSubmit = (post: Post) => {
-    createPost(post.title, post.description, user?.name)
-    reset()
-    window.location.href = '/'
+    createPost(post.title, post.description, user?.name).then(() => {
+      reset()
+      window.location.href = '/'
+    })
   }
 
   return (

@@ -28,8 +28,7 @@ export const createPost = async (
   const newPost = { title, description, likes: 0, author }
 
   try {
-    const createdPost = await pb.collection('forum_posts').create<Post>(newPost)
-    return createdPost
+    return await pb.collection('forum_posts').create<Post>(newPost)
   } catch (error) {
     console.error('Error creating post:', error)
     throw error
