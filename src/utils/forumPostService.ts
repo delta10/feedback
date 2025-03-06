@@ -11,9 +11,13 @@ export interface Post extends RecordModel {
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
-    return await pb
-      .collection('forum_posts')
-      .getFullList<Post>({ sort: '-created' })
+    return await pb.collection('forum_posts').getFullList<Post>({
+      sort: '-created',
+      headers: {
+        'Cache-Control': 'no-store, max-age=0',
+        'User-Agent': 'delta10-feedback (deployed on Vercel)',
+      },
+    })
   } catch (error) {
     console.error('Error fetching posts:', error)
     return []
