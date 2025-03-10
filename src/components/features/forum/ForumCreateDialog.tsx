@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button.tsx'
 import { useForm } from 'react-hook-form'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
-import { createPost, type Post } from '@/utils/forumPostService.ts'
+import { type Post, useCreatePost } from '@/hooks/usePosts.ts'
 
 interface ForumCreateDialogProps {
   open: boolean
@@ -23,12 +23,12 @@ export const ForumCreateDialog = ({
 }: ForumCreateDialogProps) => {
   const { register, handleSubmit, reset } = useForm<Post>()
   const user = useStore(authUser)
+  const { createPost } = useCreatePost()
 
   const onSubmit = (post: Post) => {
-    createPost(post.title, post.description, user?.name).then(() => {
-      reset()
-      window.location.href = '/'
-    })
+    createPost(post.title, post.description, user?.name)
+    reset()
+    onOpenChange(false)
   }
 
   return (

@@ -1,14 +1,9 @@
 ---
 import { FeedbackForum } from '@/components/features/forum/FeedbackForum'
-import BaseLayout from '../layouts/BaseLayout.astro'
-import { ForumHeader } from '../components/features/forum/ForumHeader'
-import { getPosts, type Post } from '../utils/forumPostService'
-
-
-
-const posts: Post[] = await getPosts()
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { ForumHeader } from '@/components/features/forum/ForumHeader'
 ---
 <BaseLayout>
   <ForumHeader client:load />
-  <FeedbackForum posts={posts}/>
+  <FeedbackForum client:load/>
 </BaseLayout>

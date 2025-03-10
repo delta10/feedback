@@ -1,9 +1,9 @@
 import React from 'react'
-import type { Post } from '@/utils/forumPostService.ts'
 import { formatDate, formatTime } from '@/utils/dateFormatting.ts'
 import { Button } from '@/components/ui/button.tsx'
+import type { Post } from '@/hooks/usePosts.ts'
 
-type ForumPostProps = {
+interface ForumPostProps {
   post: Post
 }
 
@@ -15,7 +15,7 @@ export const ForumPost: React.FC<ForumPostProps> = ({ post }) => {
       <span className="block text-gray-500 mt-3">
         Geplaatst door: {post.author}
       </span>
-      <span className="block text-gray-500">
+      <span className="block text-gray-500" suppressHydrationWarning={true}>
         Geplaatst op: {formatDate(new Date(post.created))}{' '}
         {formatTime(new Date(post.created))}
       </span>

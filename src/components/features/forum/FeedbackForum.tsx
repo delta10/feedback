@@ -1,12 +1,14 @@
 import React from 'react'
 import { timeAgo } from '@/utils/dateFormatting.ts'
-import type { Post } from '@/utils/forumPostService.ts'
+import { Skeleton } from '@/components/ui/skeleton.tsx'
+import { usePosts } from '@/hooks/usePosts.ts'
 
-type FeedbackForumProps = {
-  posts: Post[]
-}
+export const FeedbackForum = () => {
+  const { posts, error } = usePosts()
 
-export const FeedbackForum: React.FC<FeedbackForumProps> = ({ posts }) => {
+  if (error) return <p>Error loading posts.</p>
+  if (!posts) return <Skeleton />
+
   return (
     <div>
       {posts.map((post) => (
