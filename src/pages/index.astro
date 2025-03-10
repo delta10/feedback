@@ -4,6 +4,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import { ForumHeader } from '@/components/features/forum/ForumHeader'
 ---
 <BaseLayout>
-  <ForumHeader client:load />
-  <FeedbackForum client:load/>
+  <ForumHeader client:only="react"/>
+  <FeedbackForum client:only="react"/>
 </BaseLayout>

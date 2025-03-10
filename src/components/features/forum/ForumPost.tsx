@@ -1,13 +1,24 @@
 import React from 'react'
 import { formatDate, formatTime } from '@/utils/dateFormatting.ts'
 import { Button } from '@/components/ui/button.tsx'
-import type { Post } from '@/hooks/usePosts.ts'
+import { usePost } from '@/hooks/usePosts.ts'
 
 interface ForumPostProps {
-  post: Post
+  postId: string
 }
 
-export const ForumPost: React.FC<ForumPostProps> = ({ post }) => {
+export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
+  const { post, error } = usePost(postId)
+
+  if (error) {
+    console.error(error)
+    return <p>Error loading post...</p>
+  }
+
+  if (!post) {
+    return <p>Loading posts...</p>
+  }
+
   return (
     <>
       <h1 className="text-2xl font-medium mt-5">{post.title}</h1>

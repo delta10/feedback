@@ -21,10 +21,9 @@ export const usePosts = () => {
   return { posts, error }
 }
 
-export const usePost = (postId: string | null) => {
-  const { data: post, error } = useSWR<Post>(
-    postId ? `forum_posts/${postId}` : null,
-    () => fetchPost(postId!)
+export const usePost = (postId: string) => {
+  const { data: post, error } = useSWR<Post>('forum_posts', () =>
+    fetchPost(postId)
   )
 
   return { post, error }
