@@ -1,8 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import {App} from './App'
+import { FeedbackForum } from '@/components/features/forum/FeedbackForum'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { ForumHeader } from '@/components/features/forum/ForumHeader'
 ---
-
-<Layout>
-	<App />
-</Layout>
+<BaseLayout>
+  <ForumHeader client:only="react"/>
+  <FeedbackForum client:only="react"/>
+</BaseLayout>

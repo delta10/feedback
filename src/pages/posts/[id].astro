@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { ForumPost } from '@/components/features/forum/ForumPost'
+
+const id = Astro.params.id
+---
+<BaseLayout>
+  {id && <ForumPost client:load postId={id}/>}
+</BaseLayout>
