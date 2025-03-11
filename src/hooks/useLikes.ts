@@ -62,9 +62,15 @@ export function useLikes(postId: string) {
     if (data.liked && data.likeId) {
       await pb.collection('forum_likes').delete(data.likeId)
     } else {
-      await pb
-        .collection('forum_likes')
-        .create({ user: user?.id, post: postId })
+      await pb.collection('forum_likes').create(
+        { user: user?.id, post: postId },
+        {
+          headers: {
+            Authorization: `Bearer ${pb.authStore.token}`, // Use token instead of cookies
+            'Content-Type': 'application/json',
+          },
+        }
+      )
     }
 
     mutate()

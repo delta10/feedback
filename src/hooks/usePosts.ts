@@ -45,7 +45,12 @@ export const useCreatePost = () => {
       await mutate(async () => {
         const createdPost = await pb
           .collection('forum_posts')
-          .create<Post>(newPost)
+          .create<Post>(newPost, {
+            headers: {
+              Authorization: `Bearer ${pb.authStore.token}`, // Use token instead of cookies
+              'Content-Type': 'application/json',
+            },
+          })
         return [createdPost, ...(await fetchPosts())] // Fetch new list after creation
       })
     } catch (error) {
