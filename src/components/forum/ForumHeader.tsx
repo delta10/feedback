@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button.tsx'
-import { ForumCreateDialog } from '@/components/features/forum/ForumCreateDialog.tsx'
+import { ForumCreateDialog } from '@/components/forum/ForumCreateDialog.tsx'
 import { Logout } from '@/components/auth/Logout.tsx'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'

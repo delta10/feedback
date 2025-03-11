@@ -9,7 +9,6 @@ pb.authStore.onChange(() => {
   authUser.set(pb.authStore.record)
 })
 
-// Login function
 export const login = async (identity: string, password: string) => {
   try {
     const authData = await pb
@@ -23,13 +22,11 @@ export const login = async (identity: string, password: string) => {
   }
 }
 
-// Logout function
 export const logout = () => {
   pb.authStore.clear()
   authUser.set(null)
 }
 
-// Signup function
 export const signUp = async (
   username: string,
   email: string,
