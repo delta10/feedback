@@ -24,7 +24,7 @@ export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
           </span>
         </h2>
         <p className="truncate">{post.description}</p>
-        <span className="text-gray-500 italic">{post.author}</span>
+        <span className="text-gray-500 italic">{post.expand?.author.name}</span>
       </div>
     </a>
   )

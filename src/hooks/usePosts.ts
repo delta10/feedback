@@ -1,4 +1,4 @@
-import useSWR, { mutate } from 'swr'
+import useSWR from 'swr'
 import pb from '@/utils/pocketbase.ts'
 import type { RecordModel } from 'pocketbase'
 
@@ -10,10 +10,12 @@ export interface Post extends RecordModel {
 }
 
 const fetchPosts = async (): Promise<Post[]> =>
-  await pb.collection('forum_posts').getFullList<Post>({ sort: '-created' })
+  await pb
+    .collection('forum_posts')
+    .getFullList<Post>({ sort: '-created', expand: 'author' })
 
 const fetchPost = async (postId: string): Promise<Post> =>
-  await pb.collection('forum_posts').getOne<Post>(postId)
+  await pb.collection('forum_posts').getOne<Post>(postId, { expand: 'author' })
 
 export const usePosts = () => {
   const { data: posts, error } = useSWR<Post[]>('forum_posts', fetchPosts)
@@ -40,15 +42,12 @@ export const useCreatePost = () => {
     const newPost = { title, description, likes: 0, author: author }
 
     try {
-      await mutate(
-        async () => {
-          const createdPost = await pb
-            .collection('forum_posts')
-            .create<Post>(newPost)
-          return [createdPost, ...(await fetchPosts())] // Fetch new list after creation
-        },
-        { revalidate: false }
-      )
+      await mutate(async () => {
+        const createdPost = await pb
+          .collection('forum_posts')
+          .create<Post>(newPost)
+        return [createdPost, ...(await fetchPosts())] // Fetch new list after creation
+      })
     } catch (error) {
       console.error('Error creating post:', error)
     }
