@@ -1,10 +1,10 @@
 import { timeAgo } from '@/utils/dateFormatting.ts'
 import React from 'react'
-import type { Post } from '@/hooks/usePosts.ts'
+import type { Author, Post } from '@/hooks/usePosts.ts'
 import { useLikes } from '@/hooks/useLikes.ts'
 
 interface FeedbackForumRowProps {
-  post: Post
+  post: Post<Author>
 }
 
 export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
@@ -24,7 +24,7 @@ export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
           </span>
         </h2>
         <p className="truncate">{post.description}</p>
-        <span className="text-gray-500 italic">{post.author}</span>
+        <span className="text-gray-500 italic">{post.author.name}</span>
       </div>
     </a>
   )

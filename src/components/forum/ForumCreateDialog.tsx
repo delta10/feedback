@@ -26,7 +26,7 @@ export const ForumCreateDialog = ({
   const { createPost } = useCreatePost()
 
   const onSubmit = (post: Post) => {
-    if (user) createPost(post.title, post.description, user.name)
+    if (user) createPost(post.title, post.description, user.id)
     reset()
     onOpenChange(false)
   }
