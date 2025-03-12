@@ -36,7 +36,7 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
       </div>
       <p className="mt-1">{post.description}</p>
       <span className="block text-gray-500 mt-3">
-        Geplaatst door: {post.expand?.author.name}
+        Geplaatst door: {post.author}
       </span>
       <span className="block text-gray-500" suppressHydrationWarning={true}>
         Geplaatst op: {formatDate(new Date(post.created))}{' '}

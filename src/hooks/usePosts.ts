@@ -6,7 +6,7 @@ export interface Post extends RecordModel {
   id: string
   title: string
   description: string
-  likes: number
+  author: string
 }
 
 const fetchPosts = async (): Promise<Post[]> =>

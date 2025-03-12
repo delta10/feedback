@@ -26,7 +26,7 @@ export const ForumCreateDialog = ({
   const { createPost } = useCreatePost()
 
   const onSubmit = (post: Post) => {
-    if (user) createPost(post.title, post.description, user.id)
+    if (user) createPost(post.title, post.description, user.name)
     reset()
     onOpenChange(false)
   }
@@ -42,7 +42,7 @@ export const ForumCreateDialog = ({
             <Input
               type="text"
               placeholder="Titel van uw feedback of suggestie..."
-              className="font-normal mb-2 mt-3"
+              className="font-normal mb-2 mt-3 text-black"
               {...register('title', { required: true })}
             />
             <Textarea
