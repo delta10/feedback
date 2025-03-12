@@ -1,14 +1,17 @@
 import { timeAgo } from '@/utils/dateFormatting.ts'
 import React from 'react'
-import type { Author, Post } from '@/hooks/usePosts.ts'
+import type { Post } from '@/hooks/usePosts.ts'
 import { useLikes } from '@/hooks/useLikes.ts'
+import { Skeleton } from '@/components/ui/skeleton.tsx'
 
 interface FeedbackForumRowProps {
-  post: Post<Author>
+  post: Post
 }
 
 export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
   const { likes } = useLikes(post.id)
+
+  if (!post.author) return <Skeleton />
 
   return (
     <a

@@ -20,7 +20,7 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
     return <p>Error loading post...</p>
   }
 
-  if (!post) {
+  if (!post || !post.author) {
     return <p>Loading posts...</p>
   }
 
