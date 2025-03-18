@@ -15,10 +15,12 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>()
-  const [error, setError] = useState<string>()
+  const [error, setError] = useState<string>('')
 
   const onSubmit = async (data: LoginFormInputs) => {
-    await login(data.identity, data.password)
+    const result = await login(data.identity, data.password)
+
+    if (result) setError(result as string)
   }
 
   return (
@@ -43,6 +45,11 @@ export const LoginForm = () => {
       {errors.password && (
         <span className="text-red-500 text-sm mb-0.5">
           {errors.password.message}
+        </span>
+      )}
+      {error && (
+        <span className="text-red-500 text-sm mb-0.5">
+          E-mail of wachtwoord onjuist
         </span>
       )}
 

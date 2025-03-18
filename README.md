@@ -5,11 +5,11 @@ De ontwikkelomgeving van de web applicatie waarmee Delta10 feedback en suggestie
 
 Om dit project te draaien, heb je de volgende software nodig:
 
-- **Node.js** (aanbevolen versie: 18+)
-- **npm** (of Yarn/Pnpm)
+- **Node.js** 
+- **npm** 
 - **PocketBase** (backend)
 
-### Installatie op macOS (met Homebrew)
+### Installatie van benodigdheden op macOS (met Homebrew)
 
 Je kunt de benodigde software eenvoudig installeren met Homebrew:
 
@@ -25,26 +25,13 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
    brew install node
    ```
 
-3. **Controleer of Node.js en npm correct zijn geïnstalleerd:**
+3. **Installeer PocketBase:**
 
    ```sh
-   node -v
-   npm -v
+   brew install pocketbase
    ```
 
-4. **Installeer PocketBase:**
-
-   ```sh
-   brew install --cask pocketbase
-   ```
-
-   PocketBase kan nu worden gestart met:
-
-   ```sh
-   pocketbase serve
-   ```
-
-## Installatie
+## Project Installatie
 
 1. **Clone de repository:**
    ```sh
@@ -62,21 +49,35 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
    npm run dev
    ```
    Standaard bereikbaar op `http://localhost:4321`
-    <br><br>
-4. **PocketBase starten en backup herstellen:**
-   Download en start PocketBase:
+
+   &nbsp; 
+
+4. **Maak een .env bestand (pas zo nodig de pb url aan)**
+   ```sh
+   echo "PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090" > .env
+   ```
+5. **PocketBase starten en testdata laden:**
+
+   Start PocketBase:
    ```sh
    pocketbase serve
    ```
-   Laad de testdata door deze backup te herstellen:
-   ```sh
-   pocketbase restore testdata.zip
-   ```
    Standaard bereikbaar op `http://127.0.0.1:8090/`
 
+   &nbsp;  
 
-    <br><br>
+   Laad de testdata door dit script te runnen:
+   ```sh
+   node src/utils/loadTestData.js  
+   ```
+6. **login op: http://localhost:4321 met de volgende super user credentials:**
 
+   email: admin@example.com
+
+   ww: password
+
+
+7. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
 
 ## Projectstructuur
 
