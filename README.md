@@ -56,9 +56,7 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
    ```sh
    echo "PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090" > .env
    ```
-5. **PocketBase starten en testdata laden:**
-
-   Start PocketBase:
+5. **Start PocketBase:**
    ```sh
    pocketbase serve
    ```
@@ -66,18 +64,18 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
 
    &nbsp;  
 
-   Laad de testdata door dit script te runnen:
+6. **Laad de testdata:**
    ```sh
    node src/utils/loadTestData.js  
    ```
-6. **login op: http://localhost:4321 met de volgende super user credentials:**
+7. **login op: http://localhost:4321 met de volgende super user credentials:**
 
    email: admin@example.com
 
    ww: password
 
 
-7. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
+8. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
 
 ## Projectstructuur
 
