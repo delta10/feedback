@@ -9,28 +9,6 @@ Om dit project te draaien, heb je de volgende software nodig:
 - **npm** 
 - **PocketBase** (backend)
 
-### Installatie van benodigdheden op macOS (met Homebrew)
-
-Je kunt de benodigde software eenvoudig installeren met Homebrew:
-
-1. **Installeer Homebrew (als je dit nog niet hebt):**
-
-   ```sh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-2. **Installeer Node.js en npm:**
-
-   ```sh
-   brew install node
-   ```
-
-3. **Installeer PocketBase:**
-
-   ```sh
-   brew install pocketbase
-   ```
-
 ## Project Installatie
 
 1. **Clone de repository:**
@@ -51,29 +29,27 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
    Standaard bereikbaar op `http://localhost:4321`
 
 
-4. **Maak een .env bestand (pas zo nodig de pb url aan)**
+4.**Insalleer en run de backend in docker**
    ```sh
-   echo "PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090" > .env
+   docker run -d \
+  --name=pocketbase \
+  -p 8090:8090 \
+  -e PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090 \
+  --restart unless-stopped \
+  ghcr.io/muchobien/pocketbase:latest
    ```
-5. **Start PocketBase:**
-   ```sh
-   pocketbase serve
-   ```
-   Standaard bereikbaar op `http://127.0.0.1:8090/`
- 
-
-6. **Laad de testdata:**
+5. **Laad de testdata:**
    ```sh
    node src/utils/loadTestData.js  
    ```
-7. **login op: http://localhost:4321 met de volgende super user credentials:**
+6. **login op: http://localhost:4321 met de volgende super user credentials:**
 
    email: admin@example.com
 
-   ww: password
+   ww: password1234
 
 
-8. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
+7. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
 
 ## Projectstructuur
 
