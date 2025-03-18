@@ -50,7 +50,6 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
    ```
    Standaard bereikbaar op `http://localhost:4321`
 
-   &nbsp; 
 
 4. **Maak een .env bestand (pas zo nodig de pb url aan)**
    ```sh
@@ -61,8 +60,7 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
    pocketbase serve
    ```
    Standaard bereikbaar op `http://127.0.0.1:8090/`
-
-   &nbsp;  
+ 
 
 6. **Laad de testdata:**
    ```sh
