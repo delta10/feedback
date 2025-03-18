@@ -11,7 +11,7 @@ interface FeedbackForumRowProps {
 export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
   const { likes } = useLikes(post.id)
 
-  if (!post.author) return <Skeleton />
+  if (!post.author || !likes) return <Skeleton />
 
   return (
     <a
@@ -20,12 +20,12 @@ export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
     >
       <span className="flex-1 flex items-center justify-center">{likes}</span>
       <div className="flex-12 min-w-0">
-        <h2 className="text-lg font-medium flex justify-between">
-          {post.title}{' '}
+        <div className="flex flex-col-reverse md:flex-row justify-between">
+          <h2 className="text-lg font-medium">{post.title}</h2>
           <span className="text-sm text-gray-500">
             {timeAgo(new Date(post.created))}
           </span>
-        </h2>
+        </div>
         <p className="truncate">{post.description}</p>
         <span className="text-gray-500 italic">{post.author.name}</span>
       </div>

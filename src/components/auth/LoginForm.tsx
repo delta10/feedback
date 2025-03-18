@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { login } from '@/store/authStore'
 import { Input } from '@/components/ui/input.tsx'
 import { Button } from '@/components/ui/button.tsx'
+import { useState } from 'react'
 
 type LoginFormInputs = {
   identity: string
@@ -14,6 +15,7 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>()
+  const [error, setError] = useState<string>()
 
   const onSubmit = async (data: LoginFormInputs) => {
     await login(data.identity, data.password)
@@ -22,21 +24,29 @@ export const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        {...register('identity', { required: 'Email or Username is required' })}
+        {...register('identity', { required: 'Voer uw email in' })}
         type="text"
         placeholder="Email of Gebruikersnaam"
-        className="mb-1"
       />
-      {errors.identity && <span>{errors.identity.message}</span>}
+      {errors.identity && (
+        <span className="text-red-500 text-sm mb-0.5">
+          {errors.identity.message}
+        </span>
+      )}
 
       <Input
-        {...register('password', { required: 'Password is required' })}
+        {...register('password', { required: 'Voer uw wachtwoord in' })}
         type="password"
         placeholder="Wachtwoord"
+        className="mt-1"
       />
-      {errors.password && <span>{errors.password.message}</span>}
+      {errors.password && (
+        <span className="text-red-500 text-sm mb-0.5">
+          {errors.password.message}
+        </span>
+      )}
 
-      <Button type="submit" className="mt-2">
+      <Button type="submit" className="mt-2 block">
         Login
       </Button>
     </form>

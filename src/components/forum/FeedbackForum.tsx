@@ -4,10 +4,10 @@ import { usePosts } from '@/hooks/usePosts.ts'
 import { FeedbackForumRow } from '@/components/forum/FeedbackForumRow.tsx'
 
 export const FeedbackForum = () => {
-  const { posts, error } = usePosts()
+  const { posts, error, isLoading } = usePosts()
 
   if (error) return <p>Error loading posts.</p>
-  if (!posts) return <Skeleton />
+  if (!posts || isLoading) return <Skeleton />
 
   return (
     <div>

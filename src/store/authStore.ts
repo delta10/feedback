@@ -19,6 +19,7 @@ export const login = async (identity: string, password: string) => {
     window.location.href = '/'
   } catch (error) {
     console.error('Login failed:', error)
+    return error
   }
 }
 

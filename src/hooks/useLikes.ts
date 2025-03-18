@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
-import PocketBase from 'pocketbase'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
-
-const pb = new PocketBase(import.meta.env.PUBLIC_POCKETBASE_URL)
+import pb from '@/utils/pocketbase.ts'
 
 const fetchLikes = async (postId: string) => {
   if (!postId) return { count: 0, likeId: null, liked: false } // Avoid errors

@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
 import { type Post, useCreatePost } from '@/hooks/usePosts.ts'
+import { type ReactNode, useEffect } from 'react'
 
 interface ForumCreateDialogProps {
   open: boolean
@@ -20,8 +21,13 @@ interface ForumCreateDialogProps {
 export const ForumCreateDialog = ({
   open,
   onOpenChange,
-}: ForumCreateDialogProps) => {
-  const { register, handleSubmit, reset } = useForm<Post>()
+}: ForumCreateDialogProps): ReactNode => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Post>()
   const user = useStore(authUser)
   const { createPost } = useCreatePost()
 
@@ -30,6 +36,8 @@ export const ForumCreateDialog = ({
     reset()
     onOpenChange(false)
   }
+
+  if (!user) onOpenChange(false)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -43,13 +51,28 @@ export const ForumCreateDialog = ({
               type="text"
               placeholder="Titel van uw feedback of suggestie..."
               className="font-normal mb-2 mt-3 text-black"
-              {...register('title', { required: true })}
+              {...register('title', {
+                required: 'Uw feedback of suggestie moet een titel bevatten',
+              })}
             />
+            {errors.title?.message && (
+              <p className="text-red-500 text-sm mb-1">
+                {errors.title?.message}
+              </p>
+            )}
             <Textarea
               placeholder="Schrijf hier uw feedback of suggestie..."
               className="mb-2 text-black"
-              {...register('description')}
+              {...register('description', {
+                required:
+                  'Uw feedback of suggestie moet een omschrijving bevatten',
+              })}
             />
+            {errors.description?.message && (
+              <p className="text-red-500 text-sm mb-1">
+                {errors.description?.message}
+              </p>
+            )}
           </DialogDescription>
           <Button>Plaats Feedback</Button>
         </form>

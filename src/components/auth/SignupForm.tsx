@@ -23,35 +23,47 @@ export const SignupForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        {...register('username', { required: 'Username is required' })}
+        {...register('username', { required: 'Voer een gebruikersnaam in' })}
         type="text"
         placeholder="Gebruikersnaam"
       />
-      {errors.username && <span>{errors.username.message}</span>}
+      {errors.username && (
+        <span className="text-red-500 text-sm mb-0.5">
+          {errors.username.message}
+        </span>
+      )}
 
       <Input
         {...register('email', {
-          required: 'Email is required',
+          required: 'Voer een email in',
           pattern: /^\S+@\S+\.\S+$/,
         })}
         type="email"
         placeholder="Email"
         className="mt-1"
       />
-      {errors.email && <span>{errors.email.message}</span>}
+      {errors.email && (
+        <span className="text-red-500 text-sm mb-0.5">
+          {errors.email.message}
+        </span>
+      )}
 
       <Input
         {...register('password', {
-          required: 'Password is required',
+          required: 'Voer een wachtwoord in',
           minLength: 6,
         })}
         type="password"
         placeholder="Wachtwoord"
         className="mt-1"
       />
-      {errors.password && <span>{errors.password.message}</span>}
+      {errors.password && (
+        <span className="text-red-500 text-sm mb-0.5">
+          {errors.password.message}
+        </span>
+      )}
 
-      <Button type="submit" className="mt-2">
+      <Button type="submit" className="mt-2 block">
         Registreer
       </Button>
     </form>

@@ -46,7 +46,7 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
 
 ## Installatie
 
-1. **Kloon de repository:**
+1. **Clone de repository:**
    ```sh
    git clone https://github.com/delta10/feedback.git
    cd feedback
@@ -66,13 +66,15 @@ Je kunt de benodigde software eenvoudig installeren met Homebrew:
 4. **PocketBase starten en backup herstellen:**
    Download en start PocketBase:
    ```sh
-   ./pocketbase serve
+   pocketbase serve
    ```
    Laad de testdata door deze backup te herstellen:
    ```sh
-   ./pocketbase restore testdata.zip
+   pocketbase restore testdata.zip
    ```
    Standaard bereikbaar op `http://127.0.0.1:8090/`
+
+
     <br><br>
 
 
