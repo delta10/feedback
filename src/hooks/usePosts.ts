@@ -13,6 +13,7 @@ export interface Post<TAuthor = Author> extends RecordModel {
   title: string
   description: string
   author: TAuthor
+  likes: number
 }
 
 const postsFetcher = async (): Promise<Post[]> => {
@@ -20,6 +21,7 @@ const postsFetcher = async (): Promise<Post[]> => {
     .collection('forum_posts')
     .getFullList({ sort: '-created' })
   const authors = await pb.collection('authors').getFullList()
+  const likes = await pb.collection('forum_likes').getFullList()
 
   // Create a lookup map for authors (id -> author data)
   const authorMap = Object.fromEntries(
@@ -36,11 +38,13 @@ const postsFetcher = async (): Promise<Post[]> => {
           avatar: authorMap[post.author].avatar,
         }
       : null, // Handle missing authors safely
+    likes: likes.filter((like) => like.post === post.id).length, // calculate amount of likes
   })) as Post[]
 }
 
 const postFetcher = async (postId: string): Promise<Post> => {
   const post: Post<string> = await pb.collection('forum_posts').getOne(postId)
+  console.log(post)
   const author = await pb.collection('authors').getOne(post.author)
 
   return {
