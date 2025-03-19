@@ -7,12 +7,12 @@ interface FeedbackForumRowProps {
   post: Post
 }
 
-export const FeedbackForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
+export const ForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
   if (!post.author) return <Skeleton className="w-full h-28 mb-1" />
 
   return (
     <a
-      className="flex text-left w-full justify-between p-5 pl-0 hover:bg-gray-100 hover:cursor-pointer transition rounded-md"
+      className="flex text-left w-full justify-between p-5 pl-0 hover:bg-gray-100 hover:cursor-pointer transition border border-gray-200"
       href={'/posts/' + post.id}
     >
       <span className="flex-1 flex items-center justify-center">

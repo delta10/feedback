@@ -1,9 +1,9 @@
 ---
-import { FeedbackForum } from '../components/forum/FeedbackForum'
+import { Forum } from '../components/forum/Forum'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { ForumHeader } from '../components/forum/ForumHeader'
 ---
 <BaseLayout>
   <ForumHeader client:only="react"/>
-  <FeedbackForum client:only="react"/>
+  <Forum client:only="react"/>
 </BaseLayout>

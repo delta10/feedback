@@ -10,24 +10,14 @@ export const ForumHeader = () => {
   const user = useStore(authUser)
 
   return (
-    <div className="my-5">
-      <div className="flex justify-between">
-        <Button
-          disabled={!user}
-          onClick={() => setOpen(true)}
-          className="disabled:bg-gray-400 disabled:cursor-default"
-        >
-          Plaats Feedback
-        </Button>
-
-        {user ? (
-          <Logout />
-        ) : (
-          <Button asChild>
-            <a href="/login">Log in</a>
-          </Button>
-        )}
-      </div>
+    <div className="mb-5">
+      <Button
+        disabled={!user}
+        onClick={() => setOpen(true)}
+        className="cursor-pointer disabled:bg-gray-400 disabled:cursor-default"
+      >
+        Plaats Feedback
+      </Button>
 
       <ForumCreateDialog open={open} onOpenChange={setOpen} />
     </div>

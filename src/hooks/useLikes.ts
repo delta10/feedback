@@ -3,7 +3,6 @@ import useSWR from 'swr'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
 import pb from '@/utils/pocketbase.ts'
-import type { RecordModel } from 'pocketbase'
 
 const fetchLikes = async (postId: string) => {
   if (!postId) return { count: 0, likeId: null, liked: false } // Avoid errors

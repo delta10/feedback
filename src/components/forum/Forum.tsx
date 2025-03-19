@@ -1,9 +1,9 @@
 import React from 'react'
 import { Skeleton } from '@/components/ui/skeleton.tsx'
 import { usePosts } from '@/hooks/usePosts.ts'
-import { FeedbackForumRow } from '@/components/forum/FeedbackForumRow.tsx'
+import { ForumRow } from '@/components/forum/ForumRow.tsx'
 
-export const FeedbackForum = () => {
+export const Forum = () => {
   const { posts, error, isLoading } = usePosts()
 
   if (error) {
@@ -21,9 +21,10 @@ export const FeedbackForum = () => {
     )
 
   return (
-    <div>
+    <div className="border border-gray-200 rounded-sm">
+      <div className="w-full h-10 bg-gray-100"></div>
       {posts.map((post) => (
-        <FeedbackForumRow key={post.id} post={post} />
+        <ForumRow key={post.id} post={post} />
       ))}
     </div>
   )

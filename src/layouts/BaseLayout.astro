@@ -1,5 +1,6 @@
 ---
   import '@/styles/global.css'
+  import {Header} from '@/components/partials/Header'
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -37,7 +38,8 @@
 
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
       </head>
-      <body class="flex justify-center">
+      <body class="flex flex-col items-center">
+        <Header />
         <main class="w-full px-2 md:px-0 md:w-2/3"><slot/></main>
       </body>
     </html>

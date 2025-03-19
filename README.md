@@ -66,8 +66,8 @@ Om dit project te draaien, heb je de volgende software nodig:
 │   │   │   ├── Redirect.tsx
 │   │   │   ├── SignupForm.tsx
 │   │   ├── 📂 forum            # Forum-gerelateerde componenten
-│   │   │   ├── FeedbackForum.tsx
-│   │   │   ├── FeedbackForumRow.tsx
+│   │   │   ├── Forum.tsx
+│   │   │   ├── ForumRow.tsx
 │   │   │   ├── ForumCreateDialog.tsx
 │   │   │   ├── ForumHeader.tsx
 │   │   │   ├── ForumPost.tsx
