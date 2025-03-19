@@ -53,7 +53,7 @@ export const LoginForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="mt-2 block">
+      <Button type="submit" className="mt-2 block hover:cursor-pointer">
         Login
       </Button>
     </form>

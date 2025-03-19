@@ -7,8 +7,10 @@ export const Header = () => {
   const user = useStore(authUser)
 
   return (
-    <div className="w-full px-12 p-5 flex justify-between">
-      <img alt="Delta10 logo" src="/logo.png" className="w-40" />
+    <div className="w-full px-3 md:px-12 p-5 flex justify-between">
+      <a href="/">
+        <img alt="Delta10 logo" src="/logo.png" className="w-40" />
+      </a>
       {user ? (
         <Logout />
       ) : (

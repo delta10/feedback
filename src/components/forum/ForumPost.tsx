@@ -44,7 +44,11 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
           Terug
         </a>
         {user && (
-          <Button variant={liked ? 'default' : 'outline'} onClick={toggleLike}>
+          <Button
+            variant={liked ? 'outline' : 'default'}
+            onClick={toggleLike}
+            className="hover:cursor-pointer"
+          >
             Dit wil ik ook!
           </Button>
         )}
