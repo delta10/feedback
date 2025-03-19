@@ -15,7 +15,7 @@ export const ForumHeader = () => {
   const user = useStore(authUser)
 
   return (
-    <div className="mb-5">
+    <div className="w-full bg-secondary-background py-4 px-2 flex justify-end ">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>

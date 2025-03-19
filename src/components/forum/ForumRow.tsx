@@ -13,7 +13,7 @@ export const ForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
 
   return (
     <a
-      className="flex text-left w-full justify-between p-5 pl-0 hover:bg-gray-100 hover:cursor-pointer transition border border-gray-200"
+      className="flex text-left w-full justify-between p-5 pl-0 hover:bg-secondary-background hover:cursor-pointer transition border border-gray-200"
       href={'/posts/' + post.id}
     >
       <span className="flex-1 flex flex-col gap-2 items-center justify-center">

@@ -7,7 +7,7 @@ export const Header = () => {
   const user = useStore(authUser)
 
   return (
-    <div className="w-full px-3 md:px-12 p-5 flex justify-between">
+    <div className="w-full px-3 md:px-12 py-4 flex justify-between items-center bg-secondary-background">
       <a href="/">
         <img alt="Delta10 logo" src="/logo.png" className="w-40" />
       </a>
