@@ -16,10 +16,14 @@ export interface Post<TAuthor = Author> extends RecordModel {
   likes: number
 }
 
-const postsFetcher = async (): Promise<Post[]> => {
+const postsFetcher = async (search: string = ''): Promise<Post[]> => {
+  const filterQuery = search
+    ? `title ~ "${search}" || description ~ "${search}"`
+    : ''
+
   const posts = await pb
     .collection('forum_posts')
-    .getFullList({ sort: '-created' })
+    .getFullList({ sort: '-created', filter: filterQuery })
   const authors = await pb.collection('authors').getFullList()
   const likes = await pb.collection('forum_likes').getFullList()
 
@@ -56,8 +60,10 @@ const postFetcher = async (postId: string): Promise<Post> => {
   }
 }
 
-export const usePosts = () => {
-  const { data: posts, error } = useSWR('forum_posts', postsFetcher)
+export const usePosts = (search: string = '') => {
+  const { data: posts, error } = useSWR(['forum_posts', search], () =>
+    postsFetcher(search)
+  )
 
   if (!posts) return { posts: null, isLoading: true, error }
 

@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Skeleton } from '@/components/ui/skeleton.tsx'
 import { usePosts } from '@/hooks/usePosts.ts'
 import { ForumRow } from '@/components/forum/ForumRow.tsx'
 import { ForumHeader } from '@/components/forum/ForumHeader.tsx'
 
 export const Forum = () => {
-  const { posts, error, isLoading } = usePosts()
+  const [search, setSearch] = useState('')
+  const { posts, error, isLoading } = usePosts(search)
+
+  const handleSearchChange = useCallback((value: string) => {
+    setSearch(value)
+  }, [])
 
   if (error) {
     console.error(error)
@@ -23,7 +28,7 @@ export const Forum = () => {
 
   return (
     <div className="border border-gray-200 rounded-sm my-4 md:my-10">
-      <ForumHeader />
+      <ForumHeader search={search} setSearch={handleSearchChange} />
       {posts.map((post) => (
         <ForumRow key={post.id} post={post} />
       ))}
