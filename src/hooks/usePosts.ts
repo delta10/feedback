@@ -44,7 +44,6 @@ const postsFetcher = async (): Promise<Post[]> => {
 
 const postFetcher = async (postId: string): Promise<Post> => {
   const post: Post<string> = await pb.collection('forum_posts').getOne(postId)
-  console.log(post)
   const author = await pb.collection('authors').getOne(post.author)
 
   return {

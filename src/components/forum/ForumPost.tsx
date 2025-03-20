@@ -6,8 +6,9 @@ import { useLikes } from '@/hooks/useLikes.ts'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
 import { ForumPostComments } from '@/components/forum/ForumPostComments.tsx'
-import { ChevronLeft } from 'lucide-react'
+import { ArrowLeftIcon, ChevronLeft } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton.tsx'
+import { Separator } from '@/components/ui/separator.tsx'
 
 interface ForumPostProps {
   postId: string
@@ -35,40 +36,46 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mt-5">
-        <a
-          href="/"
-          className="flex text-gray-500 transition hover:text-gray-400"
-        >
-          <ChevronLeft />
-          Terug
-        </a>
-        {user && (
-          <Button
-            variant={liked ? 'outline' : 'default'}
-            onClick={toggleLike}
-            className="hover:cursor-pointer"
-          >
-            Dit wil ik ook!
-          </Button>
-        )}
+      <div className="mt-5 mb-3">
+        <Button variant="outline" asChild>
+          <a href="/" className="flex">
+            <ArrowLeftIcon />
+            Terug
+          </a>
+        </Button>
       </div>
-
-      <h1 className="text-2xl font-medium mt-3">{post.title}</h1>
-      <p className="mt-1">{post.description}</p>
-      <span className="block text-gray-500 mt-3">
-        Geplaatst door: {post.author.name}
-      </span>
-      <span className="block text-gray-500" suppressHydrationWarning={true}>
-        Geplaatst op: {formatDate(new Date(post.created))}{' '}
-        {formatTime(new Date(post.created))}
-      </span>
-      <span className="block text-gray-500">
-        {likes == 1
-          ? `${likes} gebruiker wilt dit ook`
-          : `${likes} gebruikers willen dit ook`}
-      </span>
-      <ForumPostComments postId={post.id} />
+      <div className="border border-gray-200 rounded-sm p-5">
+        <div className="flex justify-between">
+          <h1 className="text-xl mb-3 mr-4">{post.title}</h1>
+          {user && (
+            <Button
+              variant={liked ? 'outline' : 'default'}
+              onClick={toggleLike}
+              className="hover:cursor-pointer"
+            >
+              Dit wil ik ook!
+            </Button>
+          )}
+        </div>
+        <div className="w-full md:w-3/4">
+          <span className="block my-3">{post.author.name}</span>
+          <p className="mt-1 mb-2">{post.description}</p>
+          <Separator />
+          <div className="flex justify-between mt-1">
+            <span className="text-gray-500">
+              {likes == 1
+                ? `${likes} gebruiker wilt dit ook`
+                : `${likes} gebruikers willen dit ook`}
+            </span>
+            <span className="text-gray-500" suppressHydrationWarning={true}>
+              {formatDate(new Date(post.created))}
+              {', '}
+              {formatTime(new Date(post.created))}
+            </span>
+          </div>
+          <ForumPostComments postId={post.id} />
+        </div>
+      </div>
     </>
   )
 }

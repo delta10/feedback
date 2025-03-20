@@ -1,6 +1,6 @@
 import { useComments } from '@/hooks/useComments.ts'
 import { type ReactElement } from 'react'
-import { timeAgo } from '@/utils/dateFormatting.ts'
+import { formatDate, formatTime, timeAgo } from '@/utils/dateFormatting.ts'
 import { ForumPostCommentForm } from '@/components/forum/ForumPostCommentForm.tsx'
 import { Skeleton } from '@/components/ui/skeleton.tsx'
 
@@ -27,17 +27,24 @@ export const ForumPostComments = ({
     )
 
   return (
-    <div className="my-3">
-      <ForumPostCommentForm addComment={addComment} />
+    <div className="mt-8">
+      <div className="flex items-center mb-3">
+        <h2 className="text-lg mr-1">Reacties</h2>{' '}
+        <span className="text-gray-500">({comments.length})</span>
+      </div>
       {comments.map((comment) => (
-        <div key={comment.id}>
+        <div key={comment.id} className="mb-3">
           <span className="font-bold">{comment.author.name}</span>
-          <span className="text-sm text-gray-500 italic ml-1.5">
-            {timeAgo(new Date(comment.created))}
+          <span className="block text-sm text-gray-500">
+            {formatDate(new Date(comment.created))}
+            {', '}
+            {formatTime(new Date(comment.created))}
           </span>
           <p>{comment.content}</p>
         </div>
       ))}
+
+      <ForumPostCommentForm addComment={addComment} />
     </div>
   )
 }

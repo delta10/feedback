@@ -39,7 +39,7 @@
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
       </head>
       <body class="flex flex-col items-center">
-        <Header client:load/>
+        <Header client:only="react"/>
         <main class="w-full px-2 md:px-0 md:w-2/3"><slot/></main>
       </body>
     </html>

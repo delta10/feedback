@@ -36,7 +36,22 @@ export function timeAgo(date: Date): string {
 }
 
 export const formatDate = (date: Date) => {
-  return `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+  const monthNames = [
+    'jan',
+    'feb',
+    'mar',
+    'apr',
+    'may',
+    'jun',
+    'jul',
+    'aug',
+    'sep',
+    'oct',
+    'nov',
+    'dec',
+  ]
+
+  return `${date.getDay()} ${monthNames[date.getMonth()]}. ${date.getFullYear()}`
 }
 
 export const formatTime = (date: Date) => {

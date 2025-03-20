@@ -22,7 +22,7 @@ export const Forum = () => {
     )
 
   return (
-    <div className="border border-gray-200 rounded-sm my-10">
+    <div className="border border-gray-200 rounded-sm my-4 md:my-10">
       <ForumHeader />
       {posts.map((post) => (
         <ForumRow key={post.id} post={post} />

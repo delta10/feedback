@@ -16,7 +16,7 @@ export const ForumRow: React.FC<FeedbackForumRowProps> = ({ post }) => {
       className="flex text-left w-full justify-between p-5 pl-0 hover:bg-secondary-background hover:cursor-pointer transition border border-gray-200"
       href={'/posts/' + post.id}
     >
-      <span className="flex-1 flex flex-col gap-2 items-center justify-center">
+      <span className="flex-1 flex flex-col gap-2 items-center justify-center px-4 md: px-0">
         <ThumbsUpIcon size={23} />
         {post.likes}
       </span>

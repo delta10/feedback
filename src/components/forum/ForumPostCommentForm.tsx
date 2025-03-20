@@ -28,7 +28,6 @@ export const ForumPostCommentForm = ({
     reset,
     formState: { errors },
   } = useForm<CommentFormValues>()
-  const [postComment, setPostComment] = useState<boolean>(false)
   const user = useStore(authUser)
 
   const onSubmit = async (data: CommentFormValues) => {
@@ -43,45 +42,36 @@ export const ForumPostCommentForm = ({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {postComment && user && (
-        <>
-          <Textarea
-            placeholder="Schrijf hier uw commentaar..."
-            className="mb-1"
-            {...register('content', {
-              required: 'Commentaar mag niet leeg zijn',
-            })}
-          ></Textarea>
-          {errors.content && (
-            <p className="text-red-500 text-sm mb-0.5">
-              {errors.content.message}
-            </p>
-          )}
-        </>
-      )}
+    <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
       <div>
-        {postComment && user && (
-          <Button className="mr-1 hover:cursor-pointer">
-            Plaats commentaar
-          </Button>
-        )}
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger type="button">
-              <Button
-                variant={postComment ? 'outline' : 'default'}
-                onClick={() => setPostComment(!postComment)}
-                className="mb-3 hover:cursor-pointer"
-                type="button"
-                disabled={!user}
-              >
-                Plaats {postComment && 'geen '} commentaar
-              </Button>
+            <TooltipTrigger className="flex flex-col w-full" asChild>
+              <div>
+                <Textarea
+                  placeholder="Schrijf hier uw reactie..."
+                  className="mb-1 w-full h-20"
+                  {...register('content', {
+                    required: 'Reactie mag niet leeg zijn',
+                  })}
+                  disabled={!user}
+                ></Textarea>
+                {errors.content && (
+                  <p className="text-red-500 text-sm mb-0.5">
+                    {errors.content.message}
+                  </p>
+                )}
+                <Button
+                  className="mr-1 hover:cursor-pointer self-end mt-1.5"
+                  disabled={!user}
+                >
+                  Reageren
+                </Button>
+              </div>
             </TooltipTrigger>
             {!user && (
               <TooltipContent>
-                <p>Log in om commentaar te plaatsen</p>
+                <p>Log in om een reactie te plaatsen</p>
               </TooltipContent>
             )}
           </Tooltip>

@@ -9,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip.tsx'
+import { PlusIcon } from 'lucide-react'
 
 export const ForumHeader = () => {
   const [open, setOpen] = useState(false)
@@ -18,14 +19,17 @@ export const ForumHeader = () => {
     <div className="w-full bg-secondary-background py-4 px-2 flex justify-end ">
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger>
-            <Button
-              disabled={!user}
-              onClick={() => setOpen(true)}
-              className="cursor-pointer disabled:cursor-default"
-            >
-              Plaats Feedback
-            </Button>
+          <TooltipTrigger asChild>
+            <div>
+              <Button
+                disabled={!user}
+                onClick={() => setOpen(true)}
+                className="cursor-pointer"
+              >
+                <PlusIcon />
+                Plaats Feedback
+              </Button>
+            </div>
           </TooltipTrigger>
           {!user && (
             <TooltipContent>

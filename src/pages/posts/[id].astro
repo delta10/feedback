@@ -5,5 +5,5 @@ import { ForumPost } from '../../components/forum/ForumPost'
 const id = Astro.params.id
 ---
 <BaseLayout>
-  {id && <ForumPost client:load postId={id}/>}
+  {id && <ForumPost client:only="react" postId={id}/>}
 </BaseLayout>

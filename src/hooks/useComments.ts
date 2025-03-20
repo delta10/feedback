@@ -14,7 +14,7 @@ interface Comment<TAuthor = Author> extends RecordModel {
 const fetchComments = async (postId: string): Promise<Comment[]> => {
   const comments = await pb.collection('forum_comments').getFullList({
     filter: `post = "${postId}"`,
-    sort: '-created',
+    sort: 'created',
   })
   const authors = await pb.collection('authors').getFullList()
 
