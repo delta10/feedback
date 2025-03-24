@@ -27,9 +27,8 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
   if (!post || !post.author || isLoading) {
     return (
       <>
-        <Skeleton className="w-full h-16 mb-2 mt-5" />
-        <Skeleton className="w-full h-20 mb-2 mt-2" />
-        <Skeleton className="w-full h-40 mb-2 mt-2" />
+        <Skeleton className="mt-6 w-20 h-12 md:h-8 mb-2" />
+        <Skeleton className="w-full h-40 mt-4" />
       </>
     )
   }
@@ -58,7 +57,7 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
           )}
         </div>
         <div className="w-full md:w-3/4">
-          <span className="block my-3">{post.author.name}</span>
+          <span className="block my-3 font-bold">{post.author.name}</span>
           <p className="mt-1 mb-2">{post.description}</p>
           <Separator />
           <div className="flex justify-between mt-1">

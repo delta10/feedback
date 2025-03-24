@@ -28,13 +28,7 @@ export const Forum = () => {
   }
 
   if (!posts || isLoading)
-    return (
-      <>
-        <Skeleton className="w-full h-28 mb-1" />
-        <Skeleton className="w-full h-28 mb-1" />
-        <Skeleton className="w-full h-28 mb-1" />
-      </>
-    )
+    return <Skeleton className="mt-4 md:mt-10 w-full h-80 mb-1" />
 
   return (
     <div className="border border-gray-200 rounded-sm my-4 md:my-10">

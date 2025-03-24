@@ -20,6 +20,7 @@ export const ForumPostComments = ({
   if (!comments || isLoading)
     return (
       <>
+        <Skeleton className="w-16 h-8 mt-10" />
         <Skeleton className="w-full h-10 mt-3 mb-1" />
         <Skeleton className="w-full h-10 mb-1" />
         <Skeleton className="w-full h-10" />
