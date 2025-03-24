@@ -6,7 +6,7 @@ import { useLikes } from '@/hooks/useLikes.ts'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
 import { ForumPostComments } from '@/components/forum/ForumPostComments.tsx'
-import { ArrowLeftIcon, ChevronLeft } from 'lucide-react'
+import { ArrowLeftIcon } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton.tsx'
 import { Separator } from '@/components/ui/separator.tsx'
 
@@ -44,7 +44,7 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
           </a>
         </Button>
       </div>
-      <div className="border border-gray-200 rounded-sm p-5">
+      <div className="border border-gray-200 rounded-sm p-2 md:p-5">
         <div className="flex justify-between">
           <h1 className="text-xl mb-3 mr-4">{post.title}</h1>
           {user && (
@@ -62,12 +62,15 @@ export const ForumPost: React.FC<ForumPostProps> = ({ postId }) => {
           <p className="mt-1 mb-2">{post.description}</p>
           <Separator />
           <div className="flex justify-between mt-1">
-            <span className="text-gray-500">
+            <span className="text-gray-500 mr-3 whitespace-normal">
               {likes == 1
                 ? `${likes} gebruiker wilt dit ook`
                 : `${likes} gebruikers willen dit ook`}
             </span>
-            <span className="text-gray-500" suppressHydrationWarning={true}>
+            <span
+              className="text-gray-500 whitespace-nowrap"
+              suppressHydrationWarning={true}
+            >
               {formatDate(new Date(post.created))}
               {', '}
               {formatTime(new Date(post.created))}

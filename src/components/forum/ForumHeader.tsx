@@ -33,7 +33,7 @@ export const ForumHeader = ({
 
   return (
     <div className="w-full bg-secondary-background py-4 px-2 flex justify-between ">
-      <div className="relative w-1/3">
+      <div className="relative w-1/2 md:w-1/3">
         <SearchIcon
           size={17}
           className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
@@ -41,7 +41,7 @@ export const ForumHeader = ({
         <Input
           ref={inputRef}
           placeholder="Zoeken"
-          className="pl-10 bg-white rounded-sm"
+          className="pl-10 bg-white rounded-sm py-6 md:py-4"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

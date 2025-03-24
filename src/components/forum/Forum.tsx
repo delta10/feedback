@@ -1,16 +1,26 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Skeleton } from '@/components/ui/skeleton.tsx'
 import { usePosts } from '@/hooks/usePosts.ts'
 import { ForumRow } from '@/components/forum/ForumRow.tsx'
 import { ForumHeader } from '@/components/forum/ForumHeader.tsx'
 
 export const Forum = () => {
+  const [searchInput, setSearchInput] = useState('')
   const [search, setSearch] = useState('')
   const { posts, error, isLoading } = usePosts(search)
 
   const handleSearchChange = useCallback((value: string) => {
-    setSearch(value)
+    setSearchInput(value)
   }, [])
+
+  // Debounce the search update
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSearch(searchInput)
+    }, 400) // Debounce delay
+
+    return () => clearTimeout(timeout) // Cleanup on unmount
+  }, [searchInput])
 
   if (error) {
     console.error(error)
@@ -28,7 +38,7 @@ export const Forum = () => {
 
   return (
     <div className="border border-gray-200 rounded-sm my-4 md:my-10">
-      <ForumHeader search={search} setSearch={handleSearchChange} />
+      <ForumHeader search={searchInput} setSearch={handleSearchChange} />
       {posts.map((post) => (
         <ForumRow key={post.id} post={post} />
       ))}
