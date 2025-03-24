@@ -1,0 +1,14 @@
+---
+import { SignupForm } from '../components/auth/SignupForm'
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout>
+  <div class="h-[80vh] flex flex-col justify-center items-center">
+    <div class="w-full md:w-3/4 lg:w-1/3">
+      <h1 class="text-xl font-semibold mb-3">Registreren</h1>
+      <SignupForm client:load/>
+      <p class="mt-1">Heb je al een account? <a href="/login" class="text-blue-500 underline">Ga naar login</a></p>
+    </div>
+  </div>
+</BaseLayout>

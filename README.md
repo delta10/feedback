@@ -1,48 +1,109 @@
-# Astro Starter Kit: Basics
+# Feedback tool - Delta10
+De ontwikkelomgeving van de web applicatie waarmee Delta10 feedback en suggesties verzamelt van haar klanten.
 
-```sh
-npm create astro@latest -- --template basics
+## Benodigdheden
+
+Om dit project te draaien, heb je de volgende software nodig:
+
+- **Node.js** 
+- **npm** 
+- **PocketBase** (backend)
+
+## Project Installatie
+
+1. **Clone de repository:**
+   ```sh
+   git clone https://github.com/delta10/feedback.git
+   cd feedback
+   ```
+
+2. **Installeer dependencies:**
+   ```sh
+   npm install
+   ```
+
+3. **Start de ontwikkelserver:**
+   ```sh
+   npm run dev
+   ```
+   Standaard bereikbaar op `http://localhost:4321`
+
+
+4.**Insalleer en run de backend in docker**
+   ```sh
+   docker run -d \
+  --name=pocketbase \
+  -p 8090:8090 \
+  -e PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090 \
+  --restart unless-stopped \
+  ghcr.io/muchobien/pocketbase:latest
+   ```
+5. **Laad de testdata:**
+   ```sh
+   node src/utils/loadTestData.js  
+   ```
+6. **login op: http://localhost:4321 met de volgende super user credentials:**
+
+   email: admin@example.com
+
+   ww: password1234
+
+
+7. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
+
+## Projectstructuur
+
+```plaintext
+📦 jouw-projectnaam
+├── 📂 src                      # Hoofdmap met de applicatiecode
+│   ├── 📂 assets               # Afbeeldingen en SVG bestanden
+│   │   ├── astro.svg
+│   │   ├── background.svg
+│   ├── 📂 components           # React componenten
+│   │   ├── 📂 auth             # Authenticatiecomponenten
+│   │   │   ├── LoginForm.tsx
+│   │   │   ├── Logout.tsx
+│   │   │   ├── Redirect.tsx
+│   │   │   ├── SignupForm.tsx
+│   │   ├── 📂 forum            # Forum-gerelateerde componenten
+│   │   │   ├── Forum.tsx
+│   │   │   ├── ForumRow.tsx
+│   │   │   ├── ForumCreateDialog.tsx
+│   │   │   ├── ForumHeader.tsx
+│   │   │   ├── ForumPost.tsx
+│   │   ├── 📂 ui               # UI-componenten met ShadCN
+│   │   │   ├── button.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── textarea.tsx
+│   ├── 📂 hooks                # Custom React hooks
+│   │   ├── useLikes.ts
+│   │   ├── usePosts.ts
+│   ├── 📂 layouts              # Astro layout bestanden
+│   │   ├── BaseLayout.astro
+│   ├── 📂 lib                  # Algemene helperfuncties
+│   │   ├── utils.ts
+│   ├── 📂 pages                # Astro pagina's
+│   │   ├── index.astro
+│   │   ├── login.astro
+│   │   ├── signup.astro
+│   │   ├── 📂 posts
+│   │   │   ├── [id].astro
+│   ├── 📂 store                # State management
+│   │   ├── authStore.ts
+│   ├── 📂 styles               # CSS stijlen
+│   │   ├── global.css
+│   ├── 📂 utils                # Hulpfuncties en PocketBase setup
+│   │   ├── dateFormatting.ts
+│   │   ├── pocketbase.ts
+├── 📂 public                   # Openbare statische bestanden
+├── 📂 pb_data                  # PocketBase database gegevens en backups
+├── 📂 pb_migrations            # PocketBase migraties
+├── 📄 astro.config.mjs         # Astro configuratie
+├── 📄 components.json          # Componentconfiguratie
+├── 📄 package.json             # NPM package configuratie
+├── 📄 package-lock.json        # NPM dependency lockfile
+├── 📄 tsconfig.json            # TypeScript configuratie
+├── 📄 README.md                # Documentatie
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

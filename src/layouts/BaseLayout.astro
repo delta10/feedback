@@ -1,0 +1,45 @@
+---
+  import '@/styles/global.css'
+  import {Header} from '@/components/partials/Header'
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "",
+    "name": "Feedback - Delta10",
+    "description":
+      "De tool waar gebruikers van onze software feedback en suggesties kunnen achterlaten."
+  }
+---
+
+<html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Feedback - Delta10</title>
+        <meta
+          name="description"
+          content="De tool waar gebruikers van onze software feedback en suggesties kunnen achterlaten."
+        />
+        <meta name="author" content="Delta10" />
+        <meta name="robots" content="index, follow" />
+
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin="anonymous"
+        />
+        {/*<link rel="dns-prefetch" href="https://api.yourwebsite.com" />*/}
+
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+      </head>
+      <body class="flex flex-col items-center">
+        <Header client:only="react"/>
+        <main class="w-full px-2 md:px-0 md:w-2/3"><slot/></main>
+      </body>
+    </html>
