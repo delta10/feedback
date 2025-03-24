@@ -62,7 +62,7 @@ const postFetcher = async (postId: string): Promise<Post> => {
 }
 
 export const usePosts = (search: string = '') => {
-  const { data: posts, error } = useSWR('forum_posts', () =>
+  const { data: posts, error } = useSWR(['forum_posts', search], () =>
     postsFetcher(search)
   )
 
