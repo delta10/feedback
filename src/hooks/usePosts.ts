@@ -1,6 +1,7 @@
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import pb from '@/utils/pocketbase.ts'
 import type { RecordModel } from 'pocketbase'
+import { cache } from 'swr/_internal'
 
 export type Author = {
   id: string
@@ -61,7 +62,7 @@ const postFetcher = async (postId: string): Promise<Post> => {
 }
 
 export const usePosts = (search: string = '') => {
-  const { data: posts, error } = useSWR(['forum_posts', search], () =>
+  const { data: posts, error } = useSWR('forum_posts', () =>
     postsFetcher(search)
   )
 
@@ -81,37 +82,57 @@ export const usePost = (postId: string) => {
 }
 
 export const useCreatePost = () => {
-  const { mutate } = useSWR('forum_posts', postsFetcher)
-
   const createPost = async (
     title: string,
     description: string,
     author: string
   ) => {
-    const newPost = { title, description, author: author }
+    const tempId = Date.now().toString()
+    const optimisticPost = {
+      id: tempId, // Temporary ID
+      title,
+      description,
+      author: { id: author, name: 'laden...', avatar: '' }, // Placeholder author data
+      likes: 0,
+      createdAt: new Date().toISOString(),
+      collectionId: 'temp-collection', // Placeholder value
+      collectionName: 'forum_posts', // Placeholder value
+    }
+
+    // Optimistically update all related SWR cache keys
+    const updateCache = (
+      updateFn: (posts: Post<Author>[]) => Post<Author>[]
+    ) => {
+      Array.from(cache.keys())
+        .filter((key) => key.startsWith('forum_posts'))
+        .forEach((key) =>
+          mutate(
+            key,
+            (currentPosts?: Post<Author>[]) => updateFn(currentPosts || []),
+            false
+          )
+        )
+    }
+
+    updateCache((posts) => [optimisticPost, ...posts]) // Show post immediately
 
     try {
-      await mutate(async (): Promise<Post[]> => {
-        const createdPost = await pb
-          .collection('forum_posts')
-          .create<Post<string>>(newPost, {
-            headers: {
-              Authorization: `Bearer ${pb.authStore.token}`, // Use token instead of cookies
-              'Content-Type': 'application/json',
-            },
-          })
-        const createdPostAuthor: Author = await pb
-          .collection('authors')
-          .getOne(createdPost.author)
+      const createdPost = await pb
+        .collection('forum_posts')
+        .create<
+          Post<string>
+        >({ title, description, author }, { headers: { Authorization: `Bearer ${pb.authStore.token}`, 'Content-Type': 'application/json' } })
+      const createdPostAuthor: Author = await pb
+        .collection('authors')
+        .getOne(createdPost.author)
 
-        // Fetch new list after creation and include all author data
-        return [
-          { ...createdPost, author: createdPostAuthor },
-          ...(await postsFetcher()),
-        ]
-      })
+      updateCache((posts) => [
+        { ...createdPost, author: createdPostAuthor },
+        ...posts.filter((p) => p.id !== tempId),
+      ])
     } catch (error) {
       console.error('Error creating post:', error)
+      updateCache((posts) => posts.filter((p) => p.id !== tempId)) // Rollback on error
     }
   }
 

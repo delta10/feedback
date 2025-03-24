@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
 import { type Post, useCreatePost } from '@/hooks/usePosts.ts'
-import { type ReactNode, useEffect } from 'react'
+import { type ReactNode } from 'react'
 
 interface ForumCreateDialogProps {
   open: boolean
