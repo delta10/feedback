@@ -29,14 +29,9 @@ Om dit project te draaien, heb je de volgende software nodig:
    Standaard bereikbaar op `http://localhost:4321`
 
 
-4.**Insalleer en run de backend in docker**
+4. **Insalleer en run de backend in docker**
    ```sh
-   docker run -d \
-  --name=pocketbase \
-  -p 8090:8090 \
-  -e PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090 \
-  --restart unless-stopped \
-  ghcr.io/muchobien/pocketbase:latest
+   docker compose up
    ```
 5. **Laad de testdata:**
    ```sh

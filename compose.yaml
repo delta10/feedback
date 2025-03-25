@@ -1,0 +1,9 @@
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    environment:
+      - PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090
