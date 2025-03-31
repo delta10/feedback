@@ -10,8 +10,9 @@ import { Button } from '@/components/ui/button.tsx'
 import { useForm } from 'react-hook-form'
 import { useStore } from '@nanostores/react'
 import { authUser } from '@/store/authStore.ts'
-import { type Post, useCreatePost } from '@/hooks/usePosts.ts'
+import { type Post } from '@/hooks/usePosts.ts'
 import { type ReactNode } from 'react'
+import { useCreatePost } from '@/hooks/useCreatePost.ts'
 
 interface ForumCreateDialogProps {
   open: boolean
