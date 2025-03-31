@@ -29,27 +29,24 @@ Om dit project te draaien, heb je de volgende software nodig:
    Standaard bereikbaar op `http://localhost:4321`
 
 
-4.**Insalleer en run de backend in docker**
+4. **Insalleer en run de backend in docker**
    ```sh
-   docker run -d \
-  --name=pocketbase \
-  -p 8090:8090 \
-  -e PUBLIC_POCKETBASE_URL=http://127.0.0.1:8090 \
-  --restart unless-stopped \
-  ghcr.io/muchobien/pocketbase:latest
+   docker compose up
    ```
 5. **Laad de testdata:**
    ```sh
-   node src/utils/loadTestData.js  
+   cd pb_data
+   unzip -o backups/testdata.zip
+   docker restart pocketbase 
    ```
-6. **login op: http://localhost:4321 met de volgende super user credentials:**
+6. **login op de frontend: http://localhost:4321/login met de volgende super user credentials:**
 
    email: admin@example.com
 
    ww: password1234
 
 
-7. **Login op http://127.0.0.1:8090/ met dezelfde credentials**
+7. **Login op de backend: (http://0.0.0.0:8090/_/) met dezelfde credentials**
 
 ## Projectstructuur
 

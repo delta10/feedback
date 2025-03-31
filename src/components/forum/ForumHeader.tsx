@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useRef, useState } from 'react'
+import React, { type ReactElement, useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button.tsx'
 import { ForumCreateDialog } from '@/components/forum/ForumCreateDialog.tsx'
 import { useStore } from '@nanostores/react'
@@ -15,18 +15,19 @@ import { Input } from '@/components/ui/input.tsx'
 interface ForumHeaderProps {
   setSearch: (search: string) => void
   search: string
+  inputRef: React.RefObject<HTMLInputElement | null>
 }
 
 export const ForumHeader = ({
   setSearch,
-  search = '',
+  search,
+  inputRef,
 }: ForumHeaderProps): ReactElement => {
   const [open, setOpen] = useState(false)
   const user = useStore(authUser)
-  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef?.current) {
       inputRef.current.focus()
     }
   }, [])
