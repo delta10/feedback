@@ -6,8 +6,6 @@ De ontwikkelomgeving van de web applicatie waarmee Delta10 feedback en suggestie
 Om dit project te draaien, heb je de volgende software nodig:
 
 - **Node.js** 
-- **npm** 
-- **PocketBase** (backend)
 
 ## Project Installatie
 
@@ -22,31 +20,46 @@ Om dit project te draaien, heb je de volgende software nodig:
    npm install
    ```
 
-3. **Start de ontwikkelserver:**
+3. **Start de frontend ontwikkelserver:**
    ```sh
    npm run dev
    ```
    Standaard bereikbaar op `http://localhost:4321`
 
 
-4. **Insalleer en run de backend in docker**
+4. **Initialiseer en draai de backend in een command**
    ```sh
-   docker compose up
+   ./init.sh
    ```
-5. **Laad de testdata:**
-   ```sh
-   cd pb_data
-   unzip -o backups/testdata.zip
-   docker restart pocketbase 
-   ```
-6. **login op de frontend: http://localhost:4321/login met de volgende super user credentials:**
+5. **login op de backend: http://0.0.0.0:8090/_/ met de volgende super user credentials:**
 
    email: admin@example.com
 
    ww: password1234
 
 
-7. **Login op de backend: (http://0.0.0.0:8090/_/) met dezelfde credentials**
+6. **Login op de frontend: (http://localhost:4321/login) met dezelfde credentials**   
+
+
+## Project opstarten
+1. **Start de frontend ontwikkelserver:**
+   ```sh
+   npm run dev
+   ```
+   Standaard bereikbaar op `http://localhost:4321`
+
+
+2. **Start de backend in docker**
+   ```sh
+   docker compose up
+   ```
+
+3. **Laad de testdata (optioneel):**
+   ```sh
+   cd pb_data
+   unzip -o backups/testdata.zip
+   docker restart pocketbase 
+   ```
 
 ## Projectstructuur
 
